@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+
+    <!-- Navigation latérale -->
+    <nav class="bg-gray-800 text-white w-1/5 h-full flex flex-col items-start p-4">
+        <h1 class="text-2xl font-bold mb-6">NutriTrack</h1>
+        <ul class="space-y-4">
+            <li><button data-target="dashboard" class="hover:text-gray-300">Dashboard</button></li>
+            <li><button data-target="meal-list" class="hover:text-gray-300">Meal List</button></li>
+            <li><button data-target="meal-form" class="hover:text-gray-300">Add Meal</button></li>
+            <li><button data-target="goal-form" class="hover:text-gray-300">Goal</button></li>
+        </ul>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="flex-1 p-6 overflow-y-auto">
+        <!-- Section Dashboard -->
+        <section id="dashboard" class="dashboard bg-gray-800 text-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-xl font-bold mb-4">Dashboard</h1>
+            <div class="mb-4">
+                <p>Calories</p>
+                <div class="w-full bg-gray-700 rounded-full h-4">
+                    <div id="calories-progress" class="bg-green-500 h-4 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p id="calories-text" class="text-sm mt-1"></p>
+            </div>
+            <div class="mb-4">
+                <p>Protéines</p>
+                <div class="w-full bg-gray-700 rounded-full h-4">
+                    <div id="proteins-progress" class="bg-blue-500 h-4 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p id="proteins-text" class="text-sm mt-1"></p>
+            </div>
+            <div class="mb-4">
+                <p>Glucides</p>
+                <div class="w-full bg-gray-700 rounded-full h-4">
+                    <div id="glucides-progress" class="bg-yellow-500 h-4 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p id="glucides-text" class="text-sm mt-1"></p>
+            </div>
+            <div class="mb-4">
+                <p>Lipides</p>
+                <div class="w-full bg-gray-700 rounded-full h-4">
+                    <div id="lipides-progress" class="bg-red-500 h-4 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p id="lipides-text" class="text-sm mt-1"></p>
+            </div>
+        </section>
+
+        <!-- Section Meal Form -->
+        <section id="meal-form" class="meal-form bg-gray-800 text-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4">Ajouter un repas</h2>
+            <form action="/meal" method="post" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Nom du repas</label>
+                    <input type="text" name="name" id="name" class="w-full border border-gray-300 rounded-lg p-2 text-black">
+                </div>
+                <div>
+                    <label for="calories" class="block text-sm font-medium">Calories</label>
+                    <input type="number" name="calories" id="calories" class="w-full border border-gray-300 rounded-lg p-2 text-black">
+                </div>
+                <div>
+                    <label for="proteins" class="block text-sm font-medium">Protéines</label>
+                    <input type="number" name="proteins" id="proteins" class="w-full border border-gray-300 rounded-lg p-2 text-black">
+                </div>
+                <div>
+                    <label for="glucides" class="block text-sm font-medium">Glucides</label>
+                    <input type="number" name="glucides" id="glucides" class="w-full border border-gray-300 rounded-lg p-2 text-black">
+                </div>
+                <div>
+                    <label for="lipides" class="block text-sm font-medium">Lipides</label>
+                    <input type="number" name="lipides" id="lipides" class="w-full border border-gray-300 rounded-lg p-2 text-black">
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Enregistrer</button>
+            </form>
+        </section>
+        
+        <!-- Section Meal List -->
+        <section id="meal-list" class="meal-list bg-gray-800 text-white rounded-lg shadow-lg p-6 mb-6 hidden">
+            <h2 class="text-xl font-bold mb-4">Liste des repas</h2>
+            <ul class="space-y-4">
+                <!-- Les repas seront ajoutés ici dynamiquement -->
+            </ul>
+        </section>
+
+        <!-- Section Goal Form -->
+        <section id="goal-form" class="goal-form bg-gray-800 text-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4">Set your goal</h2>
+            <form action="/goal" method="post" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Nom de l'objectif</label>
+                    <input type="text" name="name" id="name" class="w-full border border-gray-300 rounded-lg p-2 text-black" placeholder="Nom de l'objectif">
+                </div>
+                <div>
+                    <label for="calories" class="block text-sm font-medium">Calories</label>
+                    <input type="number" name="calories" id="calories" class="w-full border border-gray-300 rounded-lg p-2 text-black" placeholder="0">
+                </div>
+                <div>
+                    <label for="proteines" class="block text-sm font-medium">Protéines</label>
+                    <input type="number" name="proteines" id="proteines" class="w-full border border-gray-300 rounded-lg p-2 text-black" placeholder="0">
+                </div>
+                <div>
+                    <label for="glucides" class="block text-sm font-medium">Glucides</label>
+                    <input type="number" name="glucides" id="glucides" class="w-full border border-gray-300 rounded-lg p-2 text-black" placeholder="0">
+                </div>
+                <div>
+                    <label for="lipides" class="block text-sm font-medium">Lipides</label>
+                    <input type="number" name="lipides" id="lipides" class="w-full border border-gray-300 rounded-lg p-2 text-black" placeholder="0">
+                </div>
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Enregistrer</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="index.js" defer></script>
+</body>
+
+</html>
